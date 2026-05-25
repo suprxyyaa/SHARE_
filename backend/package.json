@@ -1,0 +1,12 @@
+{
+  "name": "share-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SHARE healthcare API — Render deployment scripts",
+  "scripts": {
+    "build": "pip install -r requirements.txt",
+    "start": "sh server.sh",
+    "seed": "python seed.py",
+    "dev": "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
+  }
+}

@@ -53,7 +53,20 @@ function RegisterForm() {
         setSuccess(true);
       }
     } catch (err: any) {
-      setError(err.response?.data?.detail || "Registration failed");
+      const detail = err.response?.data?.detail;
+      if (err.response?.status === 404) {
+        setError(
+          "API not found. On Vercel, set NEXT_PUBLIC_API_URL to your Render URL (e.g. https://your-app.onrender.com), then redeploy."
+        );
+      } else {
+        setError(
+          typeof detail === "string"
+            ? detail
+            : Array.isArray(detail)
+              ? detail.map((d: { msg?: string }) => d.msg).join(", ")
+              : "Registration failed"
+        );
+      }
     } finally {
       setLoading(false);
     }

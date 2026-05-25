@@ -1,0 +1,95 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "rewrites": [
+    {
+      "source": "/auth",
+      "destination": "$BACKEND_URL/auth",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/auth/:path*",
+      "destination": "$BACKEND_URL/auth/:path*",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/doctors",
+      "destination": "$BACKEND_URL/doctors",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/doctors/:path*",
+      "destination": "$BACKEND_URL/doctors/:path*",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/appointments",
+      "destination": "$BACKEND_URL/appointments",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/appointments/:path*",
+      "destination": "$BACKEND_URL/appointments/:path*",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/files",
+      "destination": "$BACKEND_URL/files",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/files/:path*",
+      "destination": "$BACKEND_URL/files/:path*",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/admin",
+      "destination": "$BACKEND_URL/admin",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "$BACKEND_URL/admin/:path*",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/health",
+      "destination": "$BACKEND_URL/health",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/docs",
+      "destination": "$BACKEND_URL/docs",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/docs/:path*",
+      "destination": "$BACKEND_URL/docs/:path*",
+      "env": ["BACKEND_URL"]
+    },
+    {
+      "source": "/openapi.json",
+      "destination": "$BACKEND_URL/openapi.json",
+      "env": ["BACKEND_URL"]
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}

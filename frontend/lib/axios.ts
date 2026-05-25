@@ -6,9 +6,11 @@ export const setToken = (token: string) => { accessToken = token; };
 export const clearToken = () => { accessToken = null; };
 export const getToken = () => accessToken;
 
-const api = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-});
+// Baked in at Vercel build time — set NEXT_PUBLIC_API_URL=https://share-47cf.onrender.com
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://127.0.0.1:8000";
+
+const api = axios.create({ baseURL: API_BASE_URL });
 
 api.interceptors.request.use((config) => {
   if (accessToken) {

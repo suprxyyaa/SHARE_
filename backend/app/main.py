@@ -19,6 +19,16 @@ app.include_router(appointments.router)
 app.include_router(files.router)
 app.include_router(admin.router)
 
+@app.get("/")
+def root():
+    return {
+        "service": "MedShare API",
+        "status": "ok",
+        "health": "/health",
+        "docs": "/docs",
+    }
+
+
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "MedShare API"}

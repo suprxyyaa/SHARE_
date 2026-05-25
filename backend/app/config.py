@@ -11,13 +11,20 @@ class Settings(BaseSettings):
     jwt_expire_minutes: int = 120
     admin_email: str
     admin_password: str
-    cors_origins: str = "http://localhost:3000"
+    cors_origins: str = (
+        "http://localhost:3000,https://share-chi-weld.vercel.app"
+    )
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     @property
     def cors_origins_list(self) -> list[str]:
-        return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+        origins = []
+        for origin in self.cors_origins.split(","):
+            cleaned = origin.strip().strip('"').strip("'")
+            if cleaned:
+                origins.append(cleaned)
+        return origins
 
 
 settings = Settings()

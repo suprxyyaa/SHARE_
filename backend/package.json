@@ -5,7 +5,7 @@
   "description": "SHARE healthcare API — Render deployment scripts",
   "scripts": {
     "build": "pip install -r requirements.txt",
-    "start": "sh server.sh",
+    "start": "gunicorn app.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000}",
     "seed": "python seed.py",
     "dev": "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
   }
